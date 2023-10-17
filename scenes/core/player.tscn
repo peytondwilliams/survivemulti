@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgqxnosvbbo4j"]
+[gd_scene load_steps=6 format=3 uid="uid://bgqxnosvbbo4j"]
 
 [ext_resource type="Script" path="res://scenes/core/player.gd" id="1_7yqyj"]
 [ext_resource type="Texture2D" uid="uid://bwr6f7cnbxrq5" path="res://assets/visual/1-bit kenney/tile025.png" id="2_pyk6c"]
@@ -16,6 +16,12 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:player_multi_id")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:position")
+properties/3/spawn = true
+properties/3/replication_mode = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0yyj"]
+radius = 15.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -35,3 +41,27 @@ zoom = Vector2(3, 3)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nfc0g")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_a0yyj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(360, 240)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1560.0
+offset_bottom = -840.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/UI"]
+offset_right = 160.0
+offset_bottom = 35.0
+text = "
+"

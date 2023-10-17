@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://xtphrunqu28c"]
+
+[ext_resource type="Script" path="res://scenes/loot/wood.gd" id="1_vsttm"]
+[ext_resource type="Texture2D" uid="uid://dk3f04qx70p6m" path="res://assets/visual/1-bit kenney/tile1013.png" id="2_7ij75"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sswaw"]
+radius = 7.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1631l"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
+[node name="Wood" type="Area2D" groups=["interactable", "loot"]]
+script = ExtResource("1_vsttm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7ij75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sswaw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1631l")

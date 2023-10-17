@@ -5,7 +5,10 @@
 [node name="Multiplayer" type="Node"]
 script = ExtResource("1_wp3nr")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="UI" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 546.0
@@ -39,6 +42,10 @@ text = "127.0.0.1"
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
 _spawnable_scenes = PackedStringArray("res://scenes/core/player.tscn")
 spawn_path = NodePath("../Players")
+
+[node name="LevelSpawner" type="MultiplayerSpawner" parent="Level"]
+_spawnable_scenes = PackedStringArray("res://scenes/levels/test_level_1.tscn")
+spawn_path = NodePath("..")
 
 [connection signal="pressed" from="UI/HBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]

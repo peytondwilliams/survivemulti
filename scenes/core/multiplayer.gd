@@ -3,6 +3,7 @@ extends Node
 const PORT = 4433
 
 @onready var player_scn = preload("res://scenes/core/player.tscn")
+@onready var test_level_scn = preload("res://scenes/levels/test_level_1.tscn")
 
 var spawn_pos = Vector2.ZERO
 
@@ -31,6 +32,8 @@ func _on_host_button_pressed():
 	multiplayer.peer_connected.connect(spawn_player)
 	spawn_player(1)
 	start_game()
+	var new_level = test_level_scn.instantiate()
+	$Level.add_child(new_level)
 
 
 func _on_connect_button_pressed():
@@ -48,7 +51,7 @@ func _on_connect_button_pressed():
 		
 	multiplayer.multiplayer_peer = peer
 	start_game()
-		
+	
 		
 func start_game():
 	# Hide the UI and unpause to start the game.
